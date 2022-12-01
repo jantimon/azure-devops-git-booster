@@ -1,0 +1,19 @@
+{
+  "name": "azure-devops-git-booster",
+  "version": "1.0.3",
+  "description": "Chrome Extension to improve Azures Dev Workflow",
+  "keywords": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jantimon/azure-devops-git-booster.git"
+  },
+  "homepage": "https://github.com/jantimon/azure-devops-git-booster",
+  "author": "Jan Nicklas",
+  "scripts": {
+    "build": "sh ./build.sh"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.203"
+  }
+}
