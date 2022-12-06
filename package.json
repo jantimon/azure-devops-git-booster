@@ -11,9 +11,14 @@
   "homepage": "https://github.com/jantimon/azure-devops-git-booster",
   "author": "Jan Nicklas",
   "scripts": {
+    "prettier:write": "npx prettier --write \"src/**/*.{js,html}\"",
     "build": "sh ./build.sh"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.203"
+    "@types/chrome": "^0.0.203",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "monaco-editor": "^0.34.1"
   }
 }

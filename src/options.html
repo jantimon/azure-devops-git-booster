@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head><title>Azure DevOps Git Booster</title></head>
-<body>
-<script src="options.js"></script>
-<style>
-    * { box-sizing: border-box }
-    body {
+  <head>
+    <title>Azure DevOps Git Booster</title>
+  </head>
+  <body>
+    <script src="options.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
         font-family: sans-serif;
         background-color: #373737;
         color: antiquewhite;
-    }
-    .row, .head-row {
+      }
+      .row,
+      .head-row {
         display: flex;
         flex-direction: row;
         align-items: center;
         margin-bottom: 10px;
         gap: 10px;
-    }
-    :where(.row, .head-row) :where(input, span) {
+      }
+      :where(.row, .head-row) :where(input, span) {
         width: 160px;
-    }
-    input[type="text"] {
+      }
+      input[type="text"] {
         color: antiquewhite;
         border: 1px solid currentColor;
         border-width: 0 0 1px 0;
         background-color: transparent;
         height: 28px;
-    }
-    input[type="text"]:focus {
+      }
+      input[type="text"]:focus {
         outline: none;
         color: white;
-    }
-    button {
+      }
+      button {
         padding: 5px 25px;
         height: 40px;
         font-size: 1.2em;
@@ -40,22 +45,21 @@
         border: 1px solid currentColor;
         border-radius: 5px;
         cursor: pointer;
-    }
-    button:hover, button:focus {
+      }
+      button:hover,
+      button:focus {
         background-color: #4d4d4d;
         color: white;
-    }
-</style>
+      }
+    </style>
 
-<form>
-    <div class="head-row">
+    <form>
+      <div class="head-row">
         <span title="e.g.: https://dev.azure.com/myRepo">Url</span>
         <span title="e.g.: /user/me/Desktop/myRepo">Repo</span>
-    </div>
-    <button type="submit">Save</button>
-</form>
-
-
-
-</body>
+        <span title="e.g.: vscode://file">Prefix</span>
+      </div>
+      <button type="submit">Save</button>
+    </form>
+  </body>
 </html>

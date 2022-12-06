@@ -1,8 +1,8 @@
 {
   "name": "Azure DevOps Git Booster",
   "description": "Optimizations for the Azure DevOps Git UI",
-  "homepage_url": "https://github.com/jantimon/azure-chrome-extension",
-  "version": "1.0.3",
+  "homepage_url": "https://github.com/jantimon/azure-devops-git-booser",
+  "version": "1.1.0",
   "manifest_version": 3,
   "permissions": [
     "scripting",
@@ -11,19 +11,22 @@
   "content_scripts": [
     {
       "run_at" : "document_start",
-      "js": ["before.js"],
-      "matches": [
-        "https://dev.azure.com/*"
-      ]
-    },
-    {
-      "run_at" : "document_idle",
-      "js": ["after.js"],
+      "js": [
+        "git-branch/content_script.js",
+        "ide-link/content_script.js"
+      ],
       "matches": [
         "https://dev.azure.com/*"
       ]
     }
   ],
+  "web_accessible_resources" : [{
+    "resources": [ "ide-link/web_accessible.js" ],
+    "matches": [ "https://dev.azure.com/*" ]
+  }],
+  "background": {
+    "service_worker": "ide-link/background.js"
+  },
   "options_ui": {
     "page": "options.html",
     "open_in_tab": false
