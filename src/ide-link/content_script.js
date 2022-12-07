@@ -29,7 +29,6 @@ addEventListener(
     // Line Number
     if (target.matches(".repos-line-number")) {
       const lineNumber = target.dataset.line || target.dataset.lineNumber;
-      debugger
       const codeWrapper = target.closest([
         // For Code in PR Summary
         ".repos-summary-header",
