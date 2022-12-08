@@ -22,13 +22,19 @@ const getRepoSettings = (callback) => {
   );
 };
 
-getRepoSettings((repoSettings) => {
-  repoSettings
-    .concat({ repo: "", url: "", prefix: "vscode://file/" })
-    .forEach((rowValue) => createRepoSettingRow(rowValue));
-});
-
 let id = 0;
+
+// Ask background.js for the latest opener url
+chrome.runtime.sendMessage("GET_LATEST_OPTIONS_OPENER", (url) => {
+  const repositoryUrl = /_git\/[^\/]+\/?/.test(url)
+    ? url.replace(/^(.+_git\/[^\/]+)\/?.+$/, "$1")
+    : url;
+  getRepoSettings((repoSettings) => {
+    repoSettings
+      .concat({ repo: "", url: repositoryUrl, prefix: "vscode://file/" })
+      .forEach((rowValue) => createRepoSettingRow(rowValue));
+  });
+});
 
 /**
  * Create an Input Row

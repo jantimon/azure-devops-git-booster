@@ -29,12 +29,14 @@ addEventListener(
     // Line Number
     if (target.matches(".repos-line-number")) {
       const lineNumber = target.dataset.line || target.dataset.lineNumber;
-      const codeWrapper = target.closest([
-        // For Code in PR Summary
-        ".repos-summary-header",
-        // For Code in PR Comment
-        ".bolt-timeline-cell-content"
-      ].join(","));
+      const codeWrapper = target.closest(
+        [
+          // For Code in PR Summary
+          ".repos-summary-header",
+          // For Code in PR Comment
+          ".bolt-timeline-cell-content",
+        ].join(",")
+      );
       if (
         !lineNumber ||
         !codeWrapper ||
@@ -45,10 +47,10 @@ addEventListener(
       // The header containing the file name doesn't have a class or id so we need to find it by traversing the DOM
       const codeWrapperFileInfo = codeWrapper.querySelector(
         [
-        // For Code in PR Summary
-        ".repos-change-summary-file-icon-container + *",
-        // For Code in PR Comment
-        ".comment-file-header-link + *"
+          // For Code in PR Summary
+          ".repos-change-summary-file-icon-container + *",
+          // For Code in PR Comment
+          ".comment-file-header-link + *",
         ].join(", ")
       );
       if (
