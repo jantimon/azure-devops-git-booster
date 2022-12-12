@@ -1,5 +1,5 @@
 "use strict";
-// @ts-check
+/// @ts-check
 const inlineScript = document.createElement("script");
 inlineScript.src = chrome.runtime.getURL("ide-link/web_accessible.js");
 
@@ -116,7 +116,7 @@ function waitForNode(scope, check) {
  * Reads the stored settings
  * @param {(options: { repoPaths: Array<{repo: string, url: string, prefix: string}>, debug: boolean }) => void} callback
  */
-function getRepoSettings(callback) {
+function readRepoSettings(callback) {
   chrome.storage.sync.get(
     {
       repoPaths: "[]",
@@ -141,7 +141,7 @@ function getRepoSettings(callback) {
  * @param {{ fileName: string, lineNumber: string | number }} options
  */
 function openIde({ fileName, lineNumber }) {
-  getRepoSettings((settings) => {
+  readRepoSettings((settings) => {
     const currentUrl = window.location.href.toLowerCase();
     const setting = settings.repoPaths.find((row) =>
       currentUrl.startsWith(row.url.toLowerCase())
@@ -152,8 +152,7 @@ function openIde({ fileName, lineNumber }) {
       chrome.runtime.sendMessage("OPEN_OPTIONS_PAGE");
       return;
     }
-    const repo = setting.repo;
-    const ideUrl = `${setting.prefix}/${repo}/${fileName}:${lineNumber}:1`;
+    const ideUrl = `${addTrailingSlash(setting.prefix)}${addTrailingSlash(setting.repo)}${fileName}:${lineNumber}:1`;
     console.log("Opening IDE", ideUrl);
     document.location.href = ideUrl;
   });
@@ -164,4 +163,12 @@ function setClipboard(text) {
   const blob = new Blob([text], { type });
   const data = [new ClipboardItem({ [type]: blob })];
   return navigator.clipboard.write(data);
+}
+
+/**
+ * Adds a trailing slash to a url
+ * @param {string} url
+ */
+function addTrailingSlash(url) {
+  return url.endsWith("/") || url.endsWith("\\") ? url : `${url}/`;
 }
