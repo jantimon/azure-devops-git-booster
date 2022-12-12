@@ -153,7 +153,10 @@ function openIde({ fileName, lineNumber }) {
       return;
     }
     const repo = setting.repo;
-    const ideUrl = `${setting.prefix}/${repo}/${fileName}:${lineNumber}:1`;
+
+    const prefix = setting.prefix.endsWith("/") ? setting.prefix : `${setting.prefix}/`;
+
+    const ideUrl = `${prefix}${repo}/${fileName}:${lineNumber}:1`;
     console.log("Opening IDE", ideUrl);
     document.location.href = ideUrl;
   });
